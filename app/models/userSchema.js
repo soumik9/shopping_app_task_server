@@ -8,10 +8,6 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Name filed is required']
     },
-    image: {
-        type: String,
-        required: [true, 'Image ulr is required']
-    },
     email: {
         type: String,
         required: [true, 'Email filed is required'],
@@ -22,15 +18,12 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Password filed is required'],
     },
-    role: {
-        type: String,
-        enum: {
-            values: [ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER],
-            message: `Status value can not be {VALUE}, must be ${ENUM_USER_ROLE.ADMIN}/${ENUM_USER_ROLE.USER}`
-        },
-        default: ENUM_USER_ROLE.ADMIN
-    },
 }, { timestamps: true });
+
+// Define a virtual 'id' field
+userSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
 
 // checking is user exists
 userSchema.methods.isUserExist = async function (param) {
