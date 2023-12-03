@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import validator from "validator";
-import { ENUM_USER_ROLE } from '../../utils/constants/constants.js';
 
 const userSchema = new Schema({
     name: {
@@ -18,7 +17,11 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Password filed is required'],
     },
-}, { timestamps: true });
+    createdBy: {
+        type: String,
+        default: 'Signup'
+    },
+}, { timestamps: true, virtual: true });
 
 // Define a virtual 'id' field
 userSchema.virtual('id').get(function () {
