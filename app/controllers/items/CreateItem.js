@@ -1,21 +1,20 @@
 import httpStatus from "http-status";
 import sendResponse from "../../../utils/helpers/SendResponse.js";
 import catchAsync from "../../../utils/helpers/catchAsync.js";
-import User from "../../models/userSchema.js";
+import Item from "../../models/itemSchema.js";
 
-const DeleteUser = catchAsync(
+const CreateItem = catchAsync(
     async (req, res) => {
 
-        // finding profile
-        const data = await User.deleteOne({ _id: req.params.userId });
+        // creating user
+        await Item.create({ createdBy: req.user?._id, ...req.body });
 
         sendResponse(res, {
             statusCode: httpStatus.OK,
             success: true,
-            message: `User deleted successfully!`,
-            data: data
+            message: `Item created successfully!`,
         });
     }
 )
 
-export default DeleteUser
+export default CreateItem
