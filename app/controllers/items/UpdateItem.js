@@ -1,13 +1,13 @@
 import httpStatus from "http-status";
 import sendResponse from "../../../utils/helpers/SendResponse.js";
 import catchAsync from "../../../utils/helpers/catchAsync.js";
-import User from '../../models/userSchema.js';
+import Item from "../../models/itemSchema.js";
 
 const UpdateItem = catchAsync(
     async (req, res) => {
 
         // updating item
-        await User.findOneAndUpdate({ _id: req.params.itemId }, {
+        await Item.findOneAndUpdate({ _id: req.params.itemId }, {
             $set: req.body
         }, { new: true, runValidators: true })
 
