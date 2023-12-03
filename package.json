@@ -1,8 +1,8 @@
 {
-  "name": "go-digi",
+  "name": "shop-app",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Pankaj",
+  "author": "Soumik",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -12,7 +12,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@azure/openai": "^1.0.0-beta.6",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
